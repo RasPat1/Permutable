@@ -1,0 +1,1 @@
+This Program generates Permutable Primes.  The interesting element of this program is finding all permutations of a given number.
