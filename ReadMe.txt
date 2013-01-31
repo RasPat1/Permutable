@@ -1,1 +1,1 @@
-This Program generates Permutable Primes.  The interesting element of this program is finding all permutations of a given number.
+This Program generates Permutable Primes.  The interesting element of this program is finding all permutations of a given number.  The implemented solution uses a cute recursive algorithm of moderate efficiency.  Main bottleneck are in generating the primes.  Change to sieve of Atkin?
