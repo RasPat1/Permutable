@@ -1,4 +1,5 @@
 require 'prime'
+require './node'
 
 class PermutablePrime
   attr_accessor :permuter
@@ -32,10 +33,7 @@ class PermutablePrime
       # Get all permuations
       permutations = permuter.call(prime)
 
-      # Check primality
       next if permutations.any? { |permutation| !Prime.prime?(permutation.to_i) }
-
-      puts prime
       all_pps << prime
     end
 
@@ -76,11 +74,14 @@ class Permuter
       perms = new_perms
     end
 
-    perms
+    perms.uniq.map(&:to_i)
   end
 end
 
-puts Time.now
-all_pps = PermutablePrime.build.call(10**7)
-puts all_pps.join(', ')
-puts Time.now
+# Lol also 20x perf improvement
+class FastPermuter
+  def call(number)
+    node = Node.build(number)
+    node.perms
+  end
+end
