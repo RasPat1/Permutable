@@ -13,8 +13,17 @@ class PermutablePrime
 
   def call(max)
     all_pps = []
+    flag = true
+    increment = 3
 
     Prime.each(max) do |prime|
+      if flag && Time.now.sec % increment == 0
+        puts "Trying #{prime}"
+        flag = false
+      elsif !flag && Time.now.sec % increment == 1
+        flag = true
+      end
+
       # skip if there is an even number a 0 or a 5
       # those numbers will be at the end in some permutation
       # if they are at the end the nuber cannot be prime (except for the trivial cases)
@@ -72,6 +81,6 @@ class Permuter
 end
 
 puts Time.now
-all_pps = PermutablePrime.build.call(10**6)
+all_pps = PermutablePrime.build.call(10**7)
 puts all_pps.join(', ')
 puts Time.now
